@@ -15,7 +15,7 @@ export function Counter() {
   const { value, address, sendIncrement } = useCounterContract();
 
   return (
-    <div className="Container">
+    <div className="Container" style={{visibility: "hidden"}}>
       <TonConnectButton />
 
       <Card>

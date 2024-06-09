@@ -3,6 +3,7 @@ import { TonConnectButton } from "@tonconnect/ui-react";
 import { Counter } from "./components/Counter";
 import { Jetton } from "./components/Jetton";
 import { TransferTon } from "./components/TransferTon";
+import { Mycomponent } from "./components/Mycomponent";
 import styled from "styled-components";
 import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
@@ -28,6 +29,28 @@ const AppContainer = styled.div`
 
 function App() {
   const { network } = useTonConnect();
+
+  return (
+    <StyledApp>
+      <AppContainer>
+        <FlexBoxCol>
+          <FlexBoxRow>
+            <TonConnectButton />
+            <Button>
+              {network
+                ? network === CHAIN.MAINNET
+                  ? "mainnet"
+                  : "testnet"
+                : "N/A"}
+            </Button>
+          </FlexBoxRow>
+          <Mycomponent />
+
+          <Counter />
+        </FlexBoxCol>
+      </AppContainer>
+    </StyledApp>
+  );
 
   return (
     <StyledApp>
