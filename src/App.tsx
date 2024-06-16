@@ -10,6 +10,8 @@ import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
 import "@twa-dev/sdk";
 
+import { useState, useEffect } from "react";
+
 const StyledApp = styled.div`
   background-color: #e8e8e8;
   color: black;
@@ -27,8 +29,20 @@ const AppContainer = styled.div`
   margin: 0 auto;
 `;
 
+
+const tg = window.Telegram.WebApp;
+
 function App() {
   const { network } = useTonConnect();
+  
+  useEffect(() => {
+    tg.ready();
+  }, [])
+
+
+  const onClose = () => {
+    tg.close();
+  }
 
   return (
     <StyledApp>
@@ -45,7 +59,7 @@ function App() {
             </Button>
           </FlexBoxRow>
           <Mycomponent />
-
+          <button onClick={onClose}>Закрыть</button>
           <Counter />
         </FlexBoxCol>
       </AppContainer>
